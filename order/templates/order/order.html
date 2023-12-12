@@ -1,0 +1,85 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% load customfunction %}
+
+
+{% block container %}
+			<div class="row">
+			    <div class="col-md-8 order-md-1 cart_info">
+			        <h4 class="mb-3 mt-3">Delivery Address</h4>
+					{% if messages %}
+					<div class="messages">
+					    {% for message in messages %}
+					    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+					    {% endfor %}
+					</div>
+					{% endif %}
+			        <form action="" method="POST" class="needs-validation" novalidate="">
+			        	{% csrf_token %}
+			            <div class="row">
+			                <div class="col-md-6 mb-3">
+								Name
+			                    {{ form.name }}
+			                </div>
+						
+			                <div class="col-md-6 mb-3">
+								Email
+			                   	{{ form.email }}
+			                </div>
+			            </div>
+						
+	           			<div class="mb-3">
+							N°Phone
+			                {{ form.phone }}
+			            </div>
+					
+			            <div class="mb-3">
+							Address
+			                {{ form.address }}
+			            </div>
+						<div class="row">
+			                <div class="col-md-5 mb-3">
+								division{{ form.division }}
+			                </div>
+			                <div class="col-md-4 mb-3">
+								district{{ form.district }}
+			                </div>
+			            
+			                
+			                <div class="col-md-3 mb-3">
+								
+			                	zip_code {{ form.zip_code }}
+			                </div>
+			            </div>
+			            <hr class="mb-4">
+			            <div class="d-block my-3">
+							Payment_method
+							{{ form.payment_method }}
+			            </div>
+			            <div class="row">
+			                <div class="col-md-6 mb-3">
+								Account_no
+			                    {{ form.account_no }}
+			                  
+			                </div>
+			                <div class="col-md-6 mb-3">
+								Transaction_id
+			                    {{ form.transaction_id }}
+			                </div>
+			            </div>
+			            <hr class="mb-4">
+			            <button class="btn btn-success btn-block" type="submit" style="margin-bottom: 20px">Navigate to order confirmation
+						</button>
+			        </form>
+			    </div>
+			    <div class="col-md-4 order-md-2 mb-4">
+					<ul class="list-group">
+						<li class="list-group-item d-flex justify-content-between align-items-center"><h4>Payment Overview</h4></li>
+						<li class="list-group-item d-flex justify-content-between align-items-center">Books<span>{{ cart|length }}</span></li>
+						<li class="list-group-item d-flex justify-content-between align-items-center">Subtotal<span>${{ cart.get_total_price }}</span></li>
+						<li class="list-group-item d-flex justify-content-between align-items-center">Shipping<span>${{ cost|shipping }}</span></li>
+						<li class="list-group-item d-flex justify-content-between align-items-center">Payable Total<span>${{ cart.get_total_price|payabletotal}}</span></li>
+					</ul>
+			    </div>
+			</div>
+		{% endblock %}
