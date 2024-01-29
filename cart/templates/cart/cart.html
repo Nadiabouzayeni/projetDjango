@@ -21,7 +21,7 @@
 					                <td class="cart_coverpage"><a href=""><img src="{{ book.coverpage.url }}"></a></td>
 					                <td>{{ book.name }}</td>
 					                <td class="cart_quantity"><input type="text" name="qty" value="{{ item.quantity }}" onchange ="updateCartItem(this,{{ book.id }})" style="width: 30px"></td>
-					                <td id="{{ book.id }}">${{ item.total_price }}</td>
+					                <td id="{{ book.id }}">{{ item.total_price }}DT</td>
 					                <td><a href="{% url 'cart:cart_remove' bookid=book.id %}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a></td>
 					            </tr>
 					            {% endwith %}
@@ -44,21 +44,21 @@
 {% block scripts %}
 	<script type="text/javascript">
 
-	$(document).ready(function(){
+	Dt(document).ready(function(){
 		summary();
  
 	}); 
 	function summary(){
-		$.ajax({
+		DT.ajax({
 			url : "summary",
 			type : "GET",
 			success : function(data){
-				$("#abc").html(data);
+				DT("#abc").html(data);
 			}
 		})
 	}
 	function updateCartItem(obj,id){
-		$.ajax({
+		DT.ajax({
 			url: "update/"+id+"/"+obj.value,
 			type: "GET",
 			data: {
@@ -66,7 +66,7 @@
 				quantity: obj.value
 			},
 			success	:function(data){
-				$("#"+(id.toString())).html(data);
+				("#"+(id.toString())).html(data);
 				summary();
 				totalCart();
 			}

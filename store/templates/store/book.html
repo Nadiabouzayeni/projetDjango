@@ -38,7 +38,7 @@
 						</div>
 						<div class="col-sm-3">
 							<div class="pricebox">
-								<p>Price: $<span> {{ book.price }}</span></p>
+								<p>Price: <span> {{ book.price }}</span></p>
 								<button class="btn btn-danger" id="addTocart" data-book-id="{{ book.id }}">
 									<i class="fa fa-shopping-cart"></i>Add to cart
 								</button>
@@ -136,21 +136,21 @@
 
 {% block scripts %}
 <script type="text/javascript">
-	$(document).on('ready', function() {
-		$(document).on('click', '.lookInsideImg,.lookInsideBg', function (e) {
-			$('div.overlay').fadeIn(500);
-			$('div.lookInsideDiv').fadeIn(500);
+	DT(document).on('ready', function() {
+		DT(document).on('click', '.lookInsideImg,.lookInsideBg', function (e) {
+			DT('div.overlay').fadeIn(500);
+			DT('div.lookInsideDiv').fadeIn(500);
 		});
 	   
-	   $(document).on('click', 'div.lookInsideDiv div.exitBtn', function () {
-			$('div.overlay').fadeOut(500);
-			$('div.lookInsideDiv').fadeOut(500);
-			refCaro($('#bookDR99'));
+		DT(document).on('click', 'div.lookInsideDiv div.exitBtn', function () {
+			DT('div.overlay').fadeOut(500);
+			DT('div.lookInsideDiv').fadeOut(500);
+			refCaro(DT('#bookDR99'));
 		});
-		$(document).on('click', 'div.overlay', function () {
-			$('div.overlay').fadeOut(500);
-			$('div.lookInsideDiv').fadeOut(500);
-			refCaro($('#bookDR99'));
+		DT(document).on('click', 'div.overlay', function () {
+			DT('div.overlay').fadeOut(500);
+			DT('div.lookInsideDiv').fadeOut(500);
+			refCaro(DT('#bookDR99'));
 			return false
 		});	
 	});
